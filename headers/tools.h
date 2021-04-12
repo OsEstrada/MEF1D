@@ -39,7 +39,7 @@ void leerMallayCondiciones(mesh &m){
 
     m.setParameters(l,k,Q);
     m.setSizes(nnodes, neltos, ndirich, nneu);
-    m.crateData();
+    m.createData();
 
     obtenerDatos(file, SINGLELINE, nnodes, INT_FLOAT, m.getNodes());
     obtenerDatos(file, DOUBLELINE, neltos, INT_INT_INT, m.getElements());

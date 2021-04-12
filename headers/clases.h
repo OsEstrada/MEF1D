@@ -22,7 +22,7 @@ public:
     float getX(){
         return x;
     }
-    int getNodel(){
+    int getNode1(){
         return node1;
     }
     int getNode2(){
@@ -96,7 +96,7 @@ public:
     float getParameter(int p){
         return parameters[p];
     }
-    void crateData(){
+    void createData(){
         node_list = new node[sizes[NODES]];
         element_list = new element[sizes[ELEMENTS]];
         dirichlet_list = new condition[sizes[DIRICHLET]];
@@ -113,5 +113,17 @@ public:
     }
     condition* getNeumann(){
         return neumann_list;
+    }
+    node getNode(int i){
+        return node_list[i];
+    }
+    element getElement(int i){
+        return element_list[i];
+    }
+    condition getCondition(int i, int type){
+        if(type == DIRICHLET)
+            return dirichlet_list[i];
+        else
+            return neumann_list[i];
     }
 };
