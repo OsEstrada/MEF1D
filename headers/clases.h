@@ -1,3 +1,5 @@
+#pragma once
+
 enum lines{NOLINE, SINGLELINE, DOUBLELINE};
 enum modes{NOMODE, INT_FLOAT, INT_INT_INT};
 enum paramaters{ELEMENTE_LENGHT, THERMAL_CONDUCTIVITY, HEAT_SOURCE};
@@ -101,6 +103,15 @@ public:
         neumann_list = new condition[sizes[NEUMANN]];
     }
     node* getNodes(){
-        
+        return node_list;
+    }
+    element* getElements(){
+        return element_list;
+    }
+    condition* getDirichlet(){
+        return dirichlet_list;
+    }
+    condition* getNeumann(){
+        return neumann_list;
     }
 };

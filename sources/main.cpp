@@ -1,8 +1,6 @@
 #include <iostream>
-#include "math_tools.h"
 #include "../headers/clases.h"
-#include "tools.h"
-#include "sel.h"
+#include"../headers/tools.h"
 
 using namespace std;
 
