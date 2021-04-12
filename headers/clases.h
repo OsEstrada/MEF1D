@@ -1,21 +1,7 @@
-enum lines
-{
-    NOLINE,
-    SINGLELINE,
-    DOUBLELINE
-};
-enum modes
-{
-    NOMODE,
-    INT_FLOAT,
-    INT_INT_INT
-};
-enum paramaters
-{
-    ELEMENTE_LENGHT,
-    THERMAL_CONDUCTIVITY,
-    HEAT_SOURCE
-};
+enum lines{NOLINE, SINGLELINE, DOUBLELINE};
+enum modes{NOMODE, INT_FLOAT, INT_INT_INT};
+enum paramaters{ELEMENTE_LENGHT, THERMAL_CONDUCTIVITY, HEAT_SOURCE};
+enum sizes{NODES, ELEMENTS, DIRICHLET, NEUMANN};
 
 class item
 {
@@ -55,6 +41,66 @@ public:
         x = x_coordinate;
     }
     void setIntIntInt(int n1, int n2, int n3){
+
+    }
+};
+
+class element : public item{
+public:
+    void setIntFloat(int n1, float r){
+
+    }
+    void setIntIntInt(int identifier, int firstnode, int secondnode){
+        id = identifier;
+        node1 = firstnode;
+        node2 = secondnode;
+    }
+};
+
+class condition: public item{
+public:
+    void setIntFloat(int node_to_apply, float prescribed_value){
+        node1 = node_to_apply;
+        value = prescribed_value;
+    }
+    void setIntIntInt(int n1, int n2, int n3){
+
+    }
+};
+
+class mesh{
+private:
+    float parameters[3];
+    int sizes[4];
+    node *node_list;
+    element *element_list;
+    condition *dirichlet_list;
+    condition *neumann_list;
+public:
+    void setParameters(float l, float k, float Q){
+        parameters[ELEMENTE_LENGHT] = l;
+        parameters[THERMAL_CONDUCTIVITY] = k;
+        parameters[HEAT_SOURCE] = Q;
+    }
+    void setSizes(int nnodes, int neltos, int ndirich, int nneu){
+        sizes[NODES] = nnodes;
+        sizes[ELEMENTS] = neltos;
+        sizes[DIRICHLET] = ndirich;
+        sizes[NEUMANN] = nneu;
+    }
+    int getSize(int s){
+        return sizes[s];
+    }
+    float getParameter(int p){
+        return parameters[p];
+    }
+    void crateData(){
+        node_list = new node[sizes[NODES]];
+        element_list = new element[sizes[ELEMENTS]];
+        dirichlet_list = new condition[sizes[DIRICHLET]];
+        neumann_list = new condition[sizes[NEUMANN]];
+    }
+    node* getNodes(){
         
     }
 };
