@@ -41,18 +41,17 @@ void productMatrixVector(Matrix A, Vector v, Vector &R)
 {
     for (int f = 0; f < A.size(); f++)
     {
-        for (int f = 0; f < A.size(); f++)
+        float cell = 0.0;
+        for (int c = 0; c < v.size(); c++)
         {
-            float cell = 0.0;
-            for (int c = 0; c < v.size(); c++)
-            {
-                cell += A.at(f).at(c) * v.at(c);
-            }
-            R.at(f) += cell;
+            cell += A.at(f).at(c) * v.at(c);
         }
+        R.at(f) += cell;
+        
     }
 }
 
+//aqui
 void productRealMatrix(float real, Matrix M, Matrix &R)
 {
     zeroes(R, M.size());
